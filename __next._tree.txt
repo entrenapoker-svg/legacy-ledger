@@ -1,0 +1,4 @@
+:HL["/legacy-ledger/_next/static/chunks/3o23fc8eghp-j.css","style"]
+:HL["/legacy-ledger/_next/static/chunks/1_vwp9dpqv9mm.css","style"]
+:HL["https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700&display=swap","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}},"staleTime":300,"buildId":"7IgTtji9yLxm2oSXM0AFt"}
