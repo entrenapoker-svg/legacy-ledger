@@ -1,6 +1,6 @@
 # CONTINUAR LEGACYLEDGER
 
-Estado para retomar en otra sesión. **Última actualización: 2026-10-02 noche (sesión 3).**
+Estado para retomar en otra sesión. **Última actualización: 2026-10-02, cierre de la sesión 3.**
 
 ## 1. Fechas que mandan
 
@@ -46,6 +46,12 @@ Detalle y citas: `docs/research/HACKATHON-RULES.md`.
 - Cifras de mercado solo con fuente y fecha (`docs/research/MERCADO-ARGENTINA.md`). El "1,2 M de holders cripto en Argentina" **no tiene fuente**: no usar.
 
 ## 6. Datos útiles
+
+- Repo público: https://github.com/entrenapoker-svg/legacy-ledger · App: https://entrenapoker-svg.github.io/legacy-ledger/ (se publica desde la rama `gh-pages` con `scripts/publish-pages.sh`).
+- **Push:** las credenciales de git por defecto son de otra cuenta (julianrodriguezia1). Usar `git -c credential.helper= -c "credential.helper=!gh auth git-credential" push`.
+- Los workflows de GitHub están en `ci/` porque el token de `gh` no tiene el permiso `workflow` (ver `ci/README.md`).
+- **Demo en vivo:** doble clic en `DEMO.cmd` (validador en WSL + app en localhost:3000, elegir Localnet). El link público no puede hablar con el validador local: el navegador lo bloquea.
+- Guía del usuario para el 3/10: `MANANA.md/.html/.pdf` (gitignored).
 
 - Program ID: `GXWfB5gTPxMLDSAeeYQ3e8TZmZMqpTzfFR3yEiUuBAaM`. Keypair en `target/deploy/` (gitignored, es clave privada; backup: no hay otro, cuidarlo).
 - Wallet de la CLI en WSL (paga el deploy): `6BeRAC4wykqWbeoXkTTJeZBgwgXLER9VnEMcECQZGkLx`, en `~/.config/solana/id.json` dentro de WSL.
