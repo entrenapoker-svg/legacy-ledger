@@ -12,3 +12,4 @@ test-ledger
 package-lock.json.bak
 .playwright-mcp
 *.tsbuildinfo
+MANANA.*
