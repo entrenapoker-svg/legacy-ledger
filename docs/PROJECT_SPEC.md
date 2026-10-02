@@ -1,7 +1,6 @@
 # LegacyLedger - Especificación
 
-**Estado: en desarrollo. El programa no compiló ni se desplegó.** Ver `README.md` para el detalle
-de qué está verificado y qué falta.
+**Nota (2/10, sesión 3):** este documento es la especificación original en castellano. El estado actual (compila, 31 tests, web app funcionando, `withdraw_asset`, reparto corregido) está en `README.md` y `CONTINUAR.md`; donde difieran, mandan esos.
 
 Este documento describe lo que el código hace hoy, no lo que el pitch promete. Donde el pitch
 necesita un dato que todavía no verifiqué, dice FALTA.
