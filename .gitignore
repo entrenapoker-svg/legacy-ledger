@@ -10,3 +10,4 @@ test-ledger
 *.log
 .DS_Store
 package-lock.json.bak
+.playwright-mcp

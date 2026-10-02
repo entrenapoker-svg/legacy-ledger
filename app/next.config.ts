@@ -1,20 +1,15 @@
 import type { NextConfig } from "next";
 
+// Static export so the app can be served from GitHub Pages or any file host.
+// NEXT_PUBLIC_BASE_PATH is "/legacy-ledger" on GitHub Pages and empty locally.
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const nextConfig: NextConfig = {
+  output: "export",
+  basePath,
+  images: { unoptimized: true },
   reactStrictMode: true,
-  transpilePackages: [
-    "@solana/wallet-adapter-base",
-    "@solana/wallet-adapter-react",
-    "@solana/wallet-adapter-react-ui",
-    "@solana/wallet-adapter-phantom",
-    "@solana/wallet-adapter-backpack",
-    "@solana/wallet-adapter-solflare",
-    "@solana/wallet-adapter-ledger",
-  ],
-  webpack: (config) => {
-    config.externals.push("pino-pretty", "lokijs", "encoding");
-    return config;
-  },
+  trailingSlash: true,
 };
 
 export default nextConfig;
