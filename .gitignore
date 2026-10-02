@@ -9,3 +9,4 @@ test-ledger
 .env.local
 *.log
 .DS_Store
+package-lock.json.bak
