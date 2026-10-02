@@ -1,0 +1,1981 @@
+{
+  "address": "GXWfB5gTPxMLDSAeeYQ3e8TZmZMqpTzfFR3yEiUuBAaM",
+  "metadata": {
+    "name": "legacy_ledger",
+    "version": "0.2.0",
+    "spec": "0.1.0",
+    "description": "Dead man's switch inheritance vaults for SPL tokens on Solana"
+  },
+  "instructions": [
+    {
+      "name": "claim_inheritance",
+      "discriminator": [
+        250,
+        34,
+        9,
+        63,
+        155,
+        43,
+        165,
+        249
+      ],
+      "accounts": [
+        {
+          "name": "protocol",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  116,
+                  111,
+                  99,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "will",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  105,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "will_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "will"
+              }
+            ]
+          }
+        },
+        {
+          "name": "heir",
+          "signer": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "will_id",
+          "type": "string"
+        },
+        {
+          "name": "heir_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "create_will",
+      "discriminator": [
+        45,
+        99,
+        103,
+        142,
+        128,
+        156,
+        135,
+        71
+      ],
+      "accounts": [
+        {
+          "name": "protocol",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  116,
+                  111,
+                  99,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "will",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  105,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "will_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "will"
+              }
+            ]
+          }
+        },
+        {
+          "name": "testator",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "will_id",
+          "type": "string"
+        },
+        {
+          "name": "inactivity_threshold_days",
+          "type": "u16"
+        },
+        {
+          "name": "rules",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "WillRule"
+              }
+            }
+          }
+        },
+        {
+          "name": "heirs",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "Heir"
+              }
+            }
+          }
+        },
+        {
+          "name": "metadata_uri",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "deposit_asset",
+      "discriminator": [
+        107,
+        93,
+        89,
+        87,
+        226,
+        203,
+        154,
+        19
+      ],
+      "accounts": [
+        {
+          "name": "protocol",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  116,
+                  111,
+                  99,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "will",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  105,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "will_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "will"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_asset",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  115,
+                  115,
+                  101,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_token_account",
+          "writable": true
+        },
+        {
+          "name": "from",
+          "writable": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "testator",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "will"
+          ]
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "will_id",
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "execute_will",
+      "discriminator": [
+        167,
+        64,
+        178,
+        63,
+        233,
+        123,
+        165,
+        124
+      ],
+      "accounts": [
+        {
+          "name": "protocol",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  116,
+                  111,
+                  99,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "will",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  105,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "will_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "keeper",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "will_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "heartbeat",
+      "discriminator": [
+        202,
+        104,
+        56,
+        6,
+        240,
+        170,
+        63,
+        134
+      ],
+      "accounts": [
+        {
+          "name": "protocol",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  116,
+                  111,
+                  99,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "will",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  105,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "will_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "testator",
+          "signer": true,
+          "relations": [
+            "will"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "will_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "initialize_protocol",
+      "discriminator": [
+        188,
+        233,
+        252,
+        106,
+        134,
+        146,
+        202,
+        91
+      ],
+      "accounts": [
+        {
+          "name": "protocol",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  116,
+                  111,
+                  99,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "protocol_fee_bps",
+          "type": "u16"
+        },
+        {
+          "name": "min_inactivity_days",
+          "type": "u16"
+        },
+        {
+          "name": "max_rules_per_will",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "pause_protocol",
+      "discriminator": [
+        144,
+        95,
+        0,
+        107,
+        119,
+        39,
+        248,
+        141
+      ],
+      "accounts": [
+        {
+          "name": "protocol",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  116,
+                  111,
+                  99,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "protocol"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "register_asset",
+      "discriminator": [
+        21,
+        80,
+        155,
+        149,
+        117,
+        207,
+        235,
+        16
+      ],
+      "accounts": [
+        {
+          "name": "protocol",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  116,
+                  111,
+                  99,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "will",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  105,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "will_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "will"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_asset",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  115,
+                  115,
+                  101,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  116,
+                  111,
+                  107,
+                  101,
+                  110,
+                  115
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "testator",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "will"
+          ]
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "will_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "unpause_protocol",
+      "discriminator": [
+        183,
+        154,
+        5,
+        183,
+        105,
+        76,
+        87,
+        18
+      ],
+      "accounts": [
+        {
+          "name": "protocol",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  116,
+                  111,
+                  99,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "protocol"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "update_rule",
+      "discriminator": [
+        229,
+        35,
+        14,
+        144,
+        71,
+        94,
+        89,
+        68
+      ],
+      "accounts": [
+        {
+          "name": "protocol",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  116,
+                  111,
+                  99,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "will",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  105,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "will_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "testator",
+          "signer": true,
+          "relations": [
+            "will"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "will_id",
+          "type": "string"
+        },
+        {
+          "name": "rule_index",
+          "type": "u8"
+        },
+        {
+          "name": "new_rule",
+          "type": {
+            "defined": {
+              "name": "WillRule"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "withdraw_asset",
+      "discriminator": [
+        78,
+        193,
+        207,
+        125,
+        63,
+        193,
+        129,
+        12
+      ],
+      "accounts": [
+        {
+          "name": "protocol",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  116,
+                  111,
+                  99,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "will",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  105,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "will_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "will"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_asset",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  115,
+                  115,
+                  101,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_token_account",
+          "writable": true
+        },
+        {
+          "name": "to",
+          "writable": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "testator",
+          "signer": true,
+          "relations": [
+            "will"
+          ]
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "will_id",
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Protocol",
+      "discriminator": [
+        45,
+        39,
+        101,
+        43,
+        115,
+        72,
+        131,
+        40
+      ]
+    },
+    {
+      "name": "Vault",
+      "discriminator": [
+        211,
+        8,
+        232,
+        43,
+        2,
+        152,
+        117,
+        119
+      ]
+    },
+    {
+      "name": "VaultAsset",
+      "discriminator": [
+        38,
+        213,
+        6,
+        33,
+        94,
+        119,
+        104,
+        181
+      ]
+    },
+    {
+      "name": "Will",
+      "discriminator": [
+        118,
+        59,
+        220,
+        69,
+        27,
+        104,
+        241,
+        81
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "HeartbeatRecorded",
+      "discriminator": [
+        171,
+        129,
+        156,
+        232,
+        208,
+        84,
+        30,
+        86
+      ]
+    },
+    {
+      "name": "InheritanceClaimed",
+      "discriminator": [
+        187,
+        111,
+        117,
+        77,
+        6,
+        154,
+        244,
+        192
+      ]
+    },
+    {
+      "name": "ProtocolInitialized",
+      "discriminator": [
+        173,
+        122,
+        168,
+        254,
+        9,
+        118,
+        76,
+        132
+      ]
+    },
+    {
+      "name": "ProtocolPauseChanged",
+      "discriminator": [
+        67,
+        33,
+        235,
+        73,
+        71,
+        124,
+        172,
+        110
+      ]
+    },
+    {
+      "name": "RuleUpdated",
+      "discriminator": [
+        195,
+        50,
+        108,
+        92,
+        31,
+        230,
+        57,
+        5
+      ]
+    },
+    {
+      "name": "VaultAssetDeposited",
+      "discriminator": [
+        18,
+        150,
+        239,
+        3,
+        120,
+        37,
+        125,
+        121
+      ]
+    },
+    {
+      "name": "VaultAssetRegistered",
+      "discriminator": [
+        69,
+        77,
+        135,
+        23,
+        191,
+        125,
+        223,
+        102
+      ]
+    },
+    {
+      "name": "VaultAssetWithdrawn",
+      "discriminator": [
+        70,
+        59,
+        155,
+        164,
+        72,
+        58,
+        76,
+        100
+      ]
+    },
+    {
+      "name": "WillCreated",
+      "discriminator": [
+        180,
+        1,
+        113,
+        99,
+        88,
+        179,
+        105,
+        189
+      ]
+    },
+    {
+      "name": "WillExecuted",
+      "discriminator": [
+        221,
+        23,
+        234,
+        11,
+        128,
+        253,
+        97,
+        58
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidWillIdLength",
+      "msg": "Invalid will id length"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidMetadataUriLength",
+      "msg": "Invalid metadata uri length"
+    },
+    {
+      "code": 6002,
+      "name": "TooManyRules",
+      "msg": "Too many rules for this will"
+    },
+    {
+      "code": 6003,
+      "name": "NoRules",
+      "msg": "Will must have at least one rule"
+    },
+    {
+      "code": 6004,
+      "name": "TooManyHeirs",
+      "msg": "Too many heirs"
+    },
+    {
+      "code": 6005,
+      "name": "NoHeirs",
+      "msg": "Will must have at least one heir"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidInactivityThreshold",
+      "msg": "Invalid inactivity threshold"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidProtocolFee",
+      "msg": "Invalid protocol fee"
+    },
+    {
+      "code": 6008,
+      "name": "WillAlreadyExecuted",
+      "msg": "Will already executed"
+    },
+    {
+      "code": 6009,
+      "name": "WillNotExecuted",
+      "msg": "Will not executed yet"
+    },
+    {
+      "code": 6010,
+      "name": "InactivityPeriodNotMet",
+      "msg": "Inactivity period not met"
+    },
+    {
+      "code": 6011,
+      "name": "UnauthorizedTestator",
+      "msg": "Unauthorized: only the testator can do this"
+    },
+    {
+      "code": 6012,
+      "name": "UnauthorizedAdmin",
+      "msg": "Unauthorized: only the admin can do this"
+    },
+    {
+      "code": 6013,
+      "name": "HeirNotFound",
+      "msg": "Heir index out of range"
+    },
+    {
+      "code": 6014,
+      "name": "UnauthorizedHeir",
+      "msg": "Unauthorized: signer is not the heir for this index"
+    },
+    {
+      "code": 6015,
+      "name": "HeirAlreadyClaimed",
+      "msg": "Heir already claimed"
+    },
+    {
+      "code": 6016,
+      "name": "InvalidRuleIndex",
+      "msg": "Invalid rule index"
+    },
+    {
+      "code": 6017,
+      "name": "RuleConditionNotMet",
+      "msg": "Rule condition not met"
+    },
+    {
+      "code": 6018,
+      "name": "UnsupportedRuleType",
+      "msg": "Rule type not supported by this build"
+    },
+    {
+      "code": 6019,
+      "name": "InvalidDateTrigger",
+      "msg": "Date trigger must be in the future"
+    },
+    {
+      "code": 6020,
+      "name": "DuplicatePriority",
+      "msg": "Rule priority must be unique"
+    },
+    {
+      "code": 6021,
+      "name": "InvalidHeirConfig",
+      "msg": "Invalid heir configuration"
+    },
+    {
+      "code": 6022,
+      "name": "AllocationMismatch",
+      "msg": "Heir allocations must total exactly 10000 bps"
+    },
+    {
+      "code": 6023,
+      "name": "InvalidTokenMint",
+      "msg": "Invalid token mint"
+    },
+    {
+      "code": 6024,
+      "name": "VaultAssetMismatch",
+      "msg": "Vault asset mismatch"
+    },
+    {
+      "code": 6025,
+      "name": "InvalidVaultTokenAccount",
+      "msg": "Vault token account does not belong to this vault"
+    },
+    {
+      "code": 6026,
+      "name": "VaultEmpty",
+      "msg": "Vault holds no assets to distribute"
+    },
+    {
+      "code": 6027,
+      "name": "ZeroAmount",
+      "msg": "Deposit amount must be greater than zero"
+    },
+    {
+      "code": 6028,
+      "name": "InvalidRemainingAccounts",
+      "msg": "Expected remaining accounts in groups of three (vault asset, vault tokens, heir tokens)"
+    },
+    {
+      "code": 6029,
+      "name": "RemainingAccountNotWritable",
+      "msg": "Remaining account must be writable: pass it with isWritable=true"
+    },
+    {
+      "code": 6030,
+      "name": "ProtocolPaused",
+      "msg": "Protocol is paused"
+    },
+    {
+      "code": 6031,
+      "name": "ProtocolNotPaused",
+      "msg": "Protocol is not paused"
+    },
+    {
+      "code": 6032,
+      "name": "InsufficientVaultBalance",
+      "msg": "Vault holds less than the requested amount"
+    },
+    {
+      "code": 6033,
+      "name": "MathOverflow",
+      "msg": "Arithmetic overflow"
+    }
+  ],
+  "types": [
+    {
+      "name": "ActionType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "DistributeToHeirs"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllocationTarget",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "percentage_bps",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "HeartbeatRecorded",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "will",
+            "type": "pubkey"
+          },
+          {
+            "name": "testator",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Heir",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "allocation_bps",
+            "type": "u16"
+          },
+          {
+            "name": "claimed",
+            "type": "bool"
+          },
+          {
+            "name": "claimed_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InheritanceClaimed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "will",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "heir",
+            "type": "pubkey"
+          },
+          {
+            "name": "heir_index",
+            "type": "u8"
+          },
+          {
+            "name": "heir_name",
+            "type": "string"
+          },
+          {
+            "name": "allocation_bps",
+            "type": "u16"
+          },
+          {
+            "name": "assets_claimed",
+            "type": "u8"
+          },
+          {
+            "name": "total_base_units",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Protocol",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "protocol_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "min_inactivity_days",
+            "type": "u16"
+          },
+          {
+            "name": "max_rules_per_will",
+            "type": "u8"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "total_wills",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProtocolInitialized",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "protocol",
+            "type": "pubkey"
+          },
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "protocol_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "min_inactivity_days",
+            "type": "u16"
+          },
+          {
+            "name": "max_rules_per_will",
+            "type": "u8"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProtocolPauseChanged",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "protocol",
+            "type": "pubkey"
+          },
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RuleType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Inactivity"
+          },
+          {
+            "name": "DateTrigger",
+            "fields": [
+              {
+                "name": "timestamp",
+                "type": "i64"
+              }
+            ]
+          },
+          {
+            "name": "PriceAbove",
+            "fields": [
+              {
+                "name": "feed_id",
+                "type": "string"
+              },
+              {
+                "name": "threshold",
+                "type": "u128"
+              }
+            ]
+          },
+          {
+            "name": "PriceBelow",
+            "fields": [
+              {
+                "name": "feed_id",
+                "type": "string"
+              },
+              {
+                "name": "threshold",
+                "type": "u128"
+              }
+            ]
+          },
+          {
+            "name": "Rebalance",
+            "fields": [
+              {
+                "name": "target_allocation",
+                "type": {
+                  "vec": {
+                    "defined": {
+                      "name": "AllocationTarget"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "RuleUpdated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "will",
+            "type": "pubkey"
+          },
+          {
+            "name": "rule_index",
+            "type": "u8"
+          },
+          {
+            "name": "old_rule_type",
+            "type": "string"
+          },
+          {
+            "name": "new_rule_type",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Vault",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "will",
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VaultAsset",
+      "docs": [
+        "One entry per SPL mint held by a will. `amount` is the authoritative",
+        "token quantity; there is no stored USD valuation, because nothing on",
+        "chain can price a basket of assets honestly."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_account",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VaultAssetDeposited",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "will",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "vault_total",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VaultAssetRegistered",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "will",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_account",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VaultAssetWithdrawn",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "will",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "vault_total",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Will",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "testator",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "will_id",
+            "type": "string"
+          },
+          {
+            "name": "metadata_uri",
+            "type": "string"
+          },
+          {
+            "name": "rules",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "WillRule"
+                }
+              }
+            }
+          },
+          {
+            "name": "heirs",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "Heir"
+                }
+              }
+            }
+          },
+          {
+            "name": "inactivity_threshold_days",
+            "type": "u16"
+          },
+          {
+            "name": "last_heartbeat",
+            "type": "i64"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "executed_at",
+            "type": "i64"
+          },
+          {
+            "name": "is_executed",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "WillCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "will",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "testator",
+            "type": "pubkey"
+          },
+          {
+            "name": "will_id",
+            "type": "string"
+          },
+          {
+            "name": "inactivity_threshold_days",
+            "type": "u16"
+          },
+          {
+            "name": "heir_count",
+            "type": "u8"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "WillExecuted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "will",
+            "type": "pubkey"
+          },
+          {
+            "name": "keeper",
+            "type": "pubkey"
+          },
+          {
+            "name": "satisfied_rule_indexes",
+            "type": "bytes"
+          },
+          {
+            "name": "inactivity_deadline",
+            "type": "i64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "WillRule",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "rule_type",
+            "type": {
+              "defined": {
+                "name": "RuleType"
+              }
+            }
+          },
+          {
+            "name": "action",
+            "type": {
+              "defined": {
+                "name": "ActionType"
+              }
+            }
+          },
+          {
+            "name": "priority",
+            "type": "u8"
+          },
+          {
+            "name": "enabled",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+[package]
+name = "legacy_ledger"
+version = "0.2.0"
+description = "Dead man's switch inheritance vaults for SPL tokens on Solana"
+license = "MIT"
+edition.workspace = true
+rust-version.workspace = true
+
+[lib]
+name = "legacy_ledger"
+crate-type = ["cdylib", "lib"]
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+anchor-debug = []
+custom-heap = []
+custom-panic = []
+# One "day" of inactivity lasts one second. Demo deployments only.
+demo = []
+
+[dependencies]
+anchor-lang = "1.2.0"
+anchor-spl = { version = "1.2.0", default-features = false, features = ["token", "token_2022"] }
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }
