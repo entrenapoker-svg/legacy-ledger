@@ -7,7 +7,8 @@ cd "$(dirname "$0")/.."
 
 PROGRAM_ID=$(grep -oP 'declare_id!\("\K[^"]+' programs/legacy-ledger/src/lib.rs)
 
-if [ "${SKIP_BUILD:-0}" != "1" ]; then
+# Reuses an existing build; set REBUILD=1 after changing the program.
+if [ "${REBUILD:-0}" = "1" ] || [ ! -f target/deploy/legacy_ledger.so ]; then
   anchor build -- --features demo
 fi
 
